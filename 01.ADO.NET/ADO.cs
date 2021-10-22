@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace AdoNEt
 {
@@ -7,7 +8,7 @@ namespace AdoNEt
     {
         static void Main(string[] args)
         {
-             string SqlConncetionString = @"Server=.;Database=MinionsDB;Integrated Security=true";
+            string SqlConncetionString = @"Server=.;Database=MinionsDB;Integrated Security=true";
 
             using (SqlConnection conncetion = new SqlConnection(SqlConncetionString))
             {
@@ -35,15 +36,59 @@ namespace AdoNEt
                     {
                         while (reader.Read())
                         {
-                           
+
                             string name = (string)reader[0];
                             int count = (int)reader[1];
-                            Console.WriteLine(name + " - " +count);
-                       
+                            Console.WriteLine(name + " - " + count);
+
                             ;
                         }
 
                     }
+                }
+                StringBuilder sb = new StringBuilder();
+                int inputId = int.Parse(Console.ReadLine());
+                string quaryId = $@"SELECT Name FROM Villains WHERE Id = @Id";
+                using (SqlCommand command = new SqlCommand(quaryId, conncetion))
+                {
+                    command.Parameters.AddWithValue("@Id", inputId);
+                    var result = command.ExecuteScalar();
+                    if (result == null)
+                    {
+                        sb.AppendLine($"No villain with ID {inputId} exists in the database.");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"Villain: {result}");
+                        string quaryMinions = $@"SELECT ROW_NUMBER() OVER (ORDER BY m.Name) as RowNum,    m.Name,   m.Age  FROM MinionsVillains AS mv  JOIN Minions As m ON mv.MinionId = m.Id  WHERE mv.VillainId = @Id ORDER BY m.Name";
+                        using (SqlCommand commandMinions = new SqlCommand(quaryMinions, conncetion))
+                        {
+                            commandMinions.Parameters.AddWithValue("@Id", inputId);
+                            using (var reader = commandMinions.ExecuteReader())
+                            {
+                                if (reader.HasRows)
+                                {
+                                   
+                                    sb.AppendLine("(no minions)");
+                                }
+                                else
+                                {
+                                    while (reader.Read())
+                                    {
+
+                                        var id = reader[0];
+                                        var name = reader[1];
+                                        var age = reader[2];
+                                        sb.AppendLine($"{id}. {name} {age}");
+                                    }
+                                }
+                            
+                            }
+
+                        }
+
+                    }
+                    Console.WriteLine(sb.ToString());
                 }
             }
         }
