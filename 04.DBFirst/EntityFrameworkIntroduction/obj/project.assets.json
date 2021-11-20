@@ -4930,9 +4930,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj",
-      "projectName": "EntityFrameworkIntroduction",
-      "projectPath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj",
+      "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\SoftUni.csproj",
+      "projectName": "SoftUni",
+      "projectPath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\SoftUni.csproj",
       "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\obj\\",
       "projectStyle": "PackageReference",
