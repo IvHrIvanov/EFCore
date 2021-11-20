@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\SoftUni.csproj": {}
+    "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\SoftUni.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\SoftUni.csproj": {
+    "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\SoftUni.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\SoftUni.csproj",
+        "projectUniqueName": "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\SoftUni.csproj",
         "projectName": "SoftUni",
-        "projectPath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\SoftUni.csproj",
+        "projectPath": "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\SoftUni.csproj",
         "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\obj\\",
+        "outputPath": "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",

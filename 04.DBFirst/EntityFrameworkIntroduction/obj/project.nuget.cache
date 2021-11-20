@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BGZyw9prkKhuN7ZS95KjA12eUjKRlsbBMeAzggi2SMIKAOC9QgNewPI1OQbIJZRegLVTVzqT8Lw7c93G6U8NoQ==",
+  "dgSpecHash": "ppkcB7R2ywjSbFdE8TQTXIL948jqtHUz5uIyXDUYwpRtE5XWN6NYKkBm7/9W7/qzsa2hs4IO53ohPmgQG8KLWg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\SoftUni.csproj",
+  "projectFilePath": "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\SoftUni.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

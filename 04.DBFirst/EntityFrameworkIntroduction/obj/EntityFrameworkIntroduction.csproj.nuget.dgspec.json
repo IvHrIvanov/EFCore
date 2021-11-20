@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj": {}
+    "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj": {
+    "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj",
+        "projectUniqueName": "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj",
         "projectName": "EntityFrameworkIntroduction",
-        "projectPath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj",
+        "projectPath": "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction.csproj",
         "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\source\\repos\\EntityFrameworkIntroduction\\EntityFrameworkIntroduction\\obj\\",
+        "outputPath": "C:\\Users\\Ivan\\EFCore\\EFCore\\04.DBFirst\\EntityFrameworkIntroduction\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
