@@ -4,9 +4,9 @@ namespace SoftUni.Models
 {
     using System;
     using System.Collections.Generic;
-    public partial class Addresses
+    public partial class Address
     {
-        public Addresses()
+        public Address()
         {
             Employees = new HashSet<Employee>();
         }

@@ -17,7 +17,7 @@ namespace SoftUni.Data
         {
         }
 
-        public virtual DbSet<Addresses> Addresses { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeProject> EmployeesProjects { get; set; }
@@ -34,7 +34,7 @@ namespace SoftUni.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Addresses>(entity =>
+            modelBuilder.Entity<Address>(entity =>
             {
                 entity.HasKey(e => e.AddressId);
 

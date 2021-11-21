@@ -24,7 +24,7 @@ namespace SoftUni.Models
         public decimal Salary { get; set; }
         public int? AddressId { get; set; }
 
-        public virtual Addresses Address { get; set; }
+        public virtual Address Address { get; set; }
         public virtual Department Department { get; set; }
         public virtual Employee Manager { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
