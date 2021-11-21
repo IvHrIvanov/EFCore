@@ -1,9 +1,11 @@
 ﻿
 namespace SoftUni
 {
+    using Microsoft.EntityFrameworkCore;
     using SoftUni.Data;
     using SoftUni.Models;
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
 
@@ -12,7 +14,7 @@ namespace SoftUni
         static void Main(string[] args)
         {
             SoftUniContext context = new SoftUniContext();
-            string employeesInfo = AddNewAddressToEmployee(context);
+            string employeesInfo = GetEmployeesInPeriod(context);
             Console.WriteLine(employeesInfo);
         }
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -87,11 +89,45 @@ namespace SoftUni
                 .Take(10)
                 .ToList();
 
-            return string.Join(Environment.NewLine,allEmployee);
+            return string.Join(Environment.NewLine, allEmployee);
+        }
+        public static string GetEmployeesInPeriod(SoftUniContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+            var employees = context.Employees
+                .Include(x => x.EmployeesProjects)
+                .ThenInclude(x => x.Project)
+                .Where(employee => employee.EmployeesProjects.Any(project => project.Project.StartDate.Year >= 2001 && project.Project.StartDate.Year <= 2003))
+                .Select(e => new
+                {
+                    EmpFristName = e.FirstName,
+                    EmpLastName = e.LastName,
+                    MenFirstName = e.Manager.FirstName,
+                    MenLastName = e.Manager.LastName,
+                    Projects = e.EmployeesProjects.Select(x => new
+                    {
 
+                        ProjectName = x.Project.Name,
+                        StartDate = x.Project.StartDate,
+                        EndDate = x.Project.EndDate
+                    })
+                })
+                .Take(10)
+                .ToList();
 
+            foreach (var e in employees)
+            {
+               
+                sb.AppendLine($"{e.EmpFristName} {e.EmpLastName} - Manager: {e.MenFirstName} {e.MenLastName}");
+                foreach (var item in e.Projects)
+                {
+                    var endDate = item.EndDate.HasValue ? item.EndDate.Value.ToString("M/d/yyyy h:mm:ss tt", new CultureInfo("en-US")) : "not finished";
+                    sb.AppendLine($"--{item.ProjectName} - " +
+                        $"{item.StartDate.ToString("M/d/yyyy h:mm:ss tt", new CultureInfo("en-US"))} - " +
+                        $"{endDate}");
+                }
+            }
+            return sb.ToString().TrimEnd();
         }
     }
 }
-
-
