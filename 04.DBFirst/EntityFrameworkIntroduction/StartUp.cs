@@ -14,7 +14,7 @@ namespace SoftUni
         static void Main(string[] args)
         {
             SoftUniContext context = new SoftUniContext();
-            string employeesInfo = GetEmployeesInPeriod(context);
+            string employeesInfo = GetAddressesByTown(context);
             Console.WriteLine(employeesInfo);
         }
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -117,7 +117,7 @@ namespace SoftUni
 
             foreach (var e in employees)
             {
-               
+
                 sb.AppendLine($"{e.EmpFristName} {e.EmpLastName} - Manager: {e.MenFirstName} {e.MenLastName}");
                 foreach (var item in e.Projects)
                 {
@@ -126,6 +126,32 @@ namespace SoftUni
                         $"{item.StartDate.ToString("M/d/yyyy h:mm:ss tt", new CultureInfo("en-US"))} - " +
                         $"{endDate}");
                 }
+            }
+            return sb.ToString().TrimEnd();
+        }
+        public static string GetAddressesByTown(SoftUniContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var addresses = context.Addresses
+                .Include(x => x.Town)
+                .Select(e => new
+                {
+                    AddressText = e.AddressText,
+                    TownName = e.Town.Name,
+                    EmployeeCount = e.Employees.Count
+
+                })
+               .OrderByDescending(x => x.EmployeeCount)
+               .ThenBy(x => x.TownName)
+               .ThenBy(x => x.AddressText)
+               .Take(10)
+               .ToList();
+         
+
+            foreach (var item in addresses)
+            {
+                sb.AppendLine($"{item.AddressText}, {item.TownName} - {item.EmployeeCount} employees");
             }
             return sb.ToString().TrimEnd();
         }
