@@ -14,7 +14,7 @@ namespace SoftUni
         static void Main(string[] args)
         {
             SoftUniContext context = new SoftUniContext();
-            string employeesInfo = GetAddressesByTown(context);
+            string employeesInfo = GetDepartmentsWithMoreThan5Employees(context);
             Console.WriteLine(employeesInfo);
         }
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -147,7 +147,7 @@ namespace SoftUni
                .ThenBy(x => x.AddressText)
                .Take(10)
                .ToList();
-         
+
 
             foreach (var item in addresses)
             {
@@ -155,5 +155,28 @@ namespace SoftUni
             }
             return sb.ToString().TrimEnd();
         }
+        public static string GetDepartmentsWithMoreThan5Employees(SoftUniContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var departments = context.Departments
+                 .Where(x => x.Employees.Count > 5)
+                .Include(x => x.Employees)
+                .ThenInclude(x => x.Manager)       
+                .OrderBy(x => x.Employees.Count)
+                .ThenBy(x => x.Name)
+                .ToList();
+
+            foreach (var d in departments)
+            {
+                sb.AppendLine($"{d.Name} - {d.Manager.FirstName} {d.Manager.LastName}");
+                foreach (var e in d.Employees.OrderBy(x => x.FirstName).ThenBy(x => x.LastName))
+                {
+                    sb.AppendLine($"{e.FirstName} {e.LastName} - {e.JobTitle}");
+                }
+            }
+            return sb.ToString().TrimEnd();
+        }
     }
+
 }
