@@ -14,7 +14,7 @@ namespace SoftUni
         static void Main(string[] args)
         {
             SoftUniContext context = new SoftUniContext();
-            string employeesInfo = GetDepartmentsWithMoreThan5Employees(context);
+            string employeesInfo = GetEmployee147(context);
             Console.WriteLine(employeesInfo);
         }
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -177,6 +177,30 @@ namespace SoftUni
             }
             return sb.ToString().TrimEnd();
         }
+        public static string GetEmployee147(SoftUniContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            var employee = context.Employees
+                .Where(x => x.EmployeeId == 147)
+                .Include(x => x.EmployeesProjects)
+                .ThenInclude(x => x.Project)
+               
+                .ToList();
+            foreach (var e in employee)
+            {
+                sb.AppendLine($"{e.FirstName} {e.LastName} - {e.JobTitle}");
+                foreach (var prj in e.EmployeesProjects.Select(x=>x.Project).OrderBy(x=>x.Name))
+                {
+                    sb.AppendLine($"{prj.Name}");
+                }
+
+            }
+
+            return sb.ToString().TrimEnd();
+        }
     }
+    
 
 }
