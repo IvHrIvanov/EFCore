@@ -185,8 +185,7 @@ namespace SoftUni
             var employee = context.Employees
                 .Where(x => x.EmployeeId == 147)
                 .Include(x => x.EmployeesProjects)
-                .ThenInclude(x => x.Project)
-               
+                .ThenInclude(x => x.Project)          
                 .ToList();
             foreach (var e in employee)
             {
