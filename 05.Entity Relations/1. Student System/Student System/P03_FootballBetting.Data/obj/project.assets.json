@@ -103,7 +103,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "3.1.3"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Design.dll": {}
+          "lib/netstandard2.0/_._": {}
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Design.dll": {}
@@ -1279,6 +1279,16 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "P03_FootballBetting.Data.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/P03_FootballBetting.Data.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/P03_FootballBetting.Data.Models.dll": {}
         }
       }
     }
@@ -4986,12 +4996,18 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "P03_FootballBetting.Data.Models/1.0.0": {
+      "type": "project",
+      "path": "../P03_FootballBetting.Data.Models/P03_FootballBetting.Data.Models.csproj",
+      "msbuildProject": "../P03_FootballBetting.Data.Models/P03_FootballBetting.Data.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.3",
-      "Microsoft.EntityFrameworkCore.Tools >= 3.1.3"
+      "Microsoft.EntityFrameworkCore.Tools >= 3.1.3",
+      "P03_FootballBetting.Data.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5020,7 +5036,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Ivan\\EFCore\\EFCore\\05.Entity Relations\\1. Student System\\Student System\\P03_FootballBetting.Data.Models\\P03_FootballBetting.Data.Models.csproj": {
+              "projectPath": "C:\\Users\\Ivan\\EFCore\\EFCore\\05.Entity Relations\\1. Student System\\Student System\\P03_FootballBetting.Data.Models\\P03_FootballBetting.Data.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

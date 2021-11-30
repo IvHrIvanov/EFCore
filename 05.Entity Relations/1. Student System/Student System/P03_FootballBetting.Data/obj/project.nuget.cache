@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3GUETO7vbwvUVaV0QM8fsm6UANYJw569RhSWjsTP4Sx8OKNMcaSWkverF3j+tl/D4HgZRUzvpWIfj0DoD9ur2g==",
+  "dgSpecHash": "SvR5CFGMPINrRhkjSkr2A377wPTmItwDCoQLfFJcxl/74pV6qFv5o+VhKoAxj3zTgeR5GFjZB24VKBkCR134Uw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ivan\\EFCore\\EFCore\\05.Entity Relations\\1. Student System\\Student System\\P03_FootballBetting.Data\\P03_FootballBetting.Data.csproj",
   "expectedPackageFiles": [

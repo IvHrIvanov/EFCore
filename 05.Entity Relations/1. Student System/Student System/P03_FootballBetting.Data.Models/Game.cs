@@ -8,6 +8,11 @@ namespace P03_FootballBetting.Data.Models
 {
     public class Game
     {
+        public Game()
+        {
+            this.PlayerStatistics = new HashSet<PlayerStatistic>();
+            this.Bets = new HashSet<Bet>();
+        }
         [Key]
         public int GameId { get; set; }
 
@@ -21,9 +26,8 @@ namespace P03_FootballBetting.Data.Models
         [Required]
         [ForeignKey(nameof(AwayTeam))]
         public int AwayTeamId { get; set; }
-
-
         public virtual Team AwayTeam { get; set; }
+
 
         public int HomeTeamGoals { get; set; }
 
@@ -38,8 +42,10 @@ namespace P03_FootballBetting.Data.Models
         [MaxLength(6)]
         public string Result { get; set; }
 
+        public virtual ICollection<PlayerStatistic> PlayerStatistics { get; set; }
 
 
+        public virtual ICollection<Bet> Bets { get; set; }
 
     }
 }

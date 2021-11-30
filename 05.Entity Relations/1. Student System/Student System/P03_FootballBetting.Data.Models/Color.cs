@@ -18,6 +18,7 @@ namespace P03_FootballBetting.Data.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
         [InverseProperty("PrimaryKitColor")]
         public virtual ICollection<Team> PrimaryKitTeams { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P03_FootballBetting.Data;
+using System;
 
 namespace Student_System
 {
@@ -6,7 +7,14 @@ namespace Student_System
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("start");
+            FootballBettingContext dbContext = new FootballBettingContext();
+
+            dbContext.Database.EnsureCreated();
+
+            Console.WriteLine("Db created");
+            dbContext.Database.EnsureDeleted();
+            Console.WriteLine("Deleted");
         }
     }
 }
