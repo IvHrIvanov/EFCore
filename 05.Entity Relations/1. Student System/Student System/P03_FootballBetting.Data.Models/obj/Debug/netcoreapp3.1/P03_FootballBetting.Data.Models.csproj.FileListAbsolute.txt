@@ -1,9 +1,0 @@
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\obj\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.csprojAssemblyReference.cache
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\obj\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.AssemblyInfoInputs.cache
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\obj\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.AssemblyInfo.cs
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\obj\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.csproj.CoreCompileInputs.cache
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\bin\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.deps.json
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\bin\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.dll
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\bin\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.pdb
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\obj\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.dll
-C:\Users\Ivan\EFCore\EFCore\05.Entity Relations\1. Student System\Student System\P03_FootballBetting.Data.Models\obj\Debug\netcoreapp3.1\P03_FootballBetting.Data.Models.pdb
