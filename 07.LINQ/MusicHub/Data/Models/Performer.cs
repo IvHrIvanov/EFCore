@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicHub.Data.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -7,6 +8,11 @@ namespace MusicHub.Data.Models
 {
     public class Performer
     {
+        public Performer()
+        {
+            this.Songs = new HashSet<Song>();
+            this.PerformerSongs = new HashSet<SongPerformer>();
+        }
         [Key]
         public int Id { get; set; }
 
@@ -23,5 +29,8 @@ namespace MusicHub.Data.Models
 
         [Required]
         public decimal NetWorth { get; set; }
+
+        public virtual ICollection<Song> Songs { get; set; }
+        public virtual ICollection<SongPerformer> 	PerformerSongs { get; set; }
     }
 }
