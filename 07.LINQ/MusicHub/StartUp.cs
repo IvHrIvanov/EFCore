@@ -1,6 +1,7 @@
 ﻿namespace MusicHub
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using Data;
@@ -23,39 +24,48 @@
         {
             StringBuilder sb = new StringBuilder();
             var albumInfo = context.Albums
+                .ToArray()
                 .Where(x => x.Producer.Id == producerId)
+                .OrderByDescending(p => p.Price)
                 .Select(a => new
                 {
                     AlbumName = a.Name,
-                    ReleaseDate = a.ReleaseDate.ToString("MM/dd/yyyy"),
+                    ReleaseDate = a.ReleaseDate.ToString(@"MM/dd/yyyy",CultureInfo.InvariantCulture),
                     ProducerName = a.Producer.Name,
-                    AlbumSong = a.Songs.Select(s => new
+                    AlbumSongs = a.Songs
+                    .ToArray()
+                    .Select(s => new
                     {
                         SongName = s.Name,
                         Price = s.Price.ToString("0.00"),
                         SongWriter = s.Writer.Name
                     })
+                    .OrderByDescending(s => s.SongName)
+                    .ThenBy(w => w.SongWriter),
+                    TotalPrice = a.Price.ToString("0.00")
                 });
-            decimal albumPrice = 0;
+            
             foreach (var ai in albumInfo)
             {
                 int count = 1;
                 sb.AppendLine($"-AlbumName: {ai.AlbumName}");
                 sb.AppendLine($"-ReleaseDate: {ai.ReleaseDate}");
                 sb.AppendLine($"-ProducerName: {ai.ProducerName}");
-                foreach (var song in ai.AlbumSong)
-                {              
+                sb.AppendLine($"-Songs:");
+
+                foreach (var song in ai.AlbumSongs)
+                {
                     sb.AppendLine($"---#{count}");
                     sb.AppendLine($"---SongName: {song.SongName}");
-                    sb.AppendLine($"---Price: {song.Price:f2}");
+                    sb.AppendLine($"---Price: {song.Price}");
                     sb.AppendLine($"---Writer: {song.SongWriter}");
 
-                    albumPrice += decimal.Parse(song.Price);
                     count++;
                 }
-                sb.AppendLine($"-AlbumPrice: {albumPrice}");
+                sb.AppendLine($"-AlbumPrice: {ai.TotalPrice}");
 
             }
+
             return sb.ToString().TrimEnd();
 
         }
