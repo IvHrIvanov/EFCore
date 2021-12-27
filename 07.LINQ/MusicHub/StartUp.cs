@@ -75,36 +75,30 @@
             StringBuilder sb = new StringBuilder();
             var songsInfo = context.Songs
                 .ToArray()
-                .Where(d => d.Duration.Minutes > duration)
+                .Where(d => d.Duration.TotalSeconds > duration)
                 .Select(s => new
                 {
                     SongName = s.Name,
-                    Writer = s.Writer.Name,
-
-                    AlbumProducer = s.Album.Producer.Name,
-                    Duration = s.Duration.ToString("c", CultureInfo.CurrentCulture),
+                    Writer = s.Writer.Name,    
                     Performer = s.SongPerformers
                     .ToArray()
-                    .Select(x => new
-                    {
-                        
-                        FullName = String.Join(" ",x.Performer.FirstName,x.Performer.LastName)
-                    })
+                    .Select(x => $"{x.Performer.FirstName} {x.Performer.LastName}")
+                    .FirstOrDefault(),
+                    AlbumProducer = s.Album.Producer.Name,
+                    Duration = s.Duration.ToString("c", CultureInfo.CurrentCulture)
 
                 })
                 .OrderBy(s => s.SongName)
                 .ThenBy(w => w.Writer)
-                .ThenBy(p => p.Performer);
+                .ThenBy(p => p.Performer)
+                .ToArray();
             int count = 1;
             foreach (var s in songsInfo)
             {
                 sb.AppendLine($"-Song #{count}");
                 sb.AppendLine($"---SongName: {s.SongName}");
                 sb.AppendLine($"---Writer: {s.Writer}");
-                foreach (var p in s.Performer)
-                {
-                    sb.AppendLine($"---Performer: {p.FullName}");
-                }
+                sb.AppendLine($"---Performer: {s.Performer}");
                 sb.AppendLine($"---AlbumProducer: {s.AlbumProducer}");
                 sb.AppendLine($"---Duration: {s.Duration}");
                 count++;
