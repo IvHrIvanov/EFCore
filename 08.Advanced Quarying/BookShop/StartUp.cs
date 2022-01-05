@@ -17,7 +17,7 @@ namespace BookShop
             using var dbContext = new BookShopContext();
             //DbInitializer.ResetDatabase(dbContext);
             string command = "teEN";
-            string result = GetAuthorNamesEndingIn(dbContext, "dy");
+            int result = CountBooks(dbContext, 12);
             Console.WriteLine(result);
         }
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
@@ -116,7 +116,7 @@ namespace BookShop
 
 
                 });
-               
+
 
             foreach (var book in books)
             {
@@ -130,9 +130,9 @@ namespace BookShop
             var fullName = context.Authors
                 .ToArray()
                 .Where(x => x.FirstName.EndsWith(input))
-                .Select(x=> new
+                .Select(x => new
                 {
-                    FullName = x.FirstName + " "+ x.LastName
+                    FullName = x.FirstName + " " + x.LastName
                 })
                 .OrderBy(x => x.FullName);
 
@@ -143,6 +143,55 @@ namespace BookShop
             }
             return sb.ToString().TrimEnd();
 
+        }
+
+        public static string GetBookTitlesContaining(BookShopContext context, string input)
+        {
+            StringBuilder sb = new StringBuilder();
+            var titles = context.Books
+                .ToArray()
+                .Where(x => x.Title.ToLower().Contains(input.ToLower()))
+                .Select(x => new
+                {
+                    Title = x.Title
+                })
+                .OrderBy(x => x.Title);
+            foreach (var title in titles)
+            {
+                sb.AppendLine($"{title.Title}");
+            }
+            return sb.ToString().TrimEnd();
+        }
+        public static string GetBooksByAuthor(BookShopContext context, string input)
+        {
+            StringBuilder sb = new StringBuilder();
+            var titles = context.Books
+                .Include(x => x.Author)
+                .Where(x => x.Author.LastName.ToLower().StartsWith(input.ToLower()))
+                .OrderBy(x => x.BookId)
+                .ToArray()
+                .Select(x => new
+                {
+                    Titles = x.Title,
+                    AuthorName = String.Concat(x.Author.FirstName, " ", x.Author.LastName)
+                });
+
+
+            foreach (var title in titles)
+            {
+                sb.AppendLine($"{title.Titles} ({title.AuthorName})");
+            }
+            return sb.ToString().TrimEnd();
+
+        }
+
+        public static int CountBooks(BookShopContext context, int lengthCheck)
+        {
+            int booksNumber = context.Books
+                .Where(x => x.Title.Length > lengthCheck)
+               .Count();
+          
+            return booksNumber;
         }
     }
 }
