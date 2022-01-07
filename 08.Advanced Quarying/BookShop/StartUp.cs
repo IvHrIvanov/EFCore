@@ -17,7 +17,7 @@ namespace BookShop
             using var dbContext = new BookShopContext();
             //DbInitializer.ResetDatabase(dbContext);
             string command = "teEN";
-            int result = CountBooks(dbContext, 12);
+            string result = CountCopiesByAuthor(dbContext);
             Console.WriteLine(result);
         }
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
@@ -192,6 +192,28 @@ namespace BookShop
                .Count();
           
             return booksNumber;
+        }
+        public static string CountCopiesByAuthor(BookShopContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var totalBooksCopies = context.Books
+                .Include(x=>x.Author)
+                .ToArray()
+                .Select(x => new 
+                { 
+                    Author = $"{x.Author.FirstName} {x.Author.LastName}",
+                    TotalCopies = x.Copies
+                })
+                .OrderByDescending(x=>x.TotalCopies);
+
+      
+            
+            foreach (var book in totalBooksCopies)
+            {
+                sb.AppendLine($"{book.Author} - {book.TotalCopies}");
+            }
+            return sb.ToString().TrimEnd();
         }
     }
 }
