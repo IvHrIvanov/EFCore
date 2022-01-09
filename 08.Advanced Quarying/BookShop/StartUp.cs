@@ -17,7 +17,7 @@ namespace BookShop
             using var dbContext = new BookShopContext();
             //DbInitializer.ResetDatabase(dbContext);
             string command = "teEN";
-            string result = CountCopiesByAuthor(dbContext);
+            string result = GetTotalProfitByCategory(dbContext);
             Console.WriteLine(result);
         }
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
@@ -197,21 +197,39 @@ namespace BookShop
         {
             StringBuilder sb = new StringBuilder();
 
-            var totalBooksCopies = context.Books
-                .Include(x=>x.Author)
-                .ToArray()
+            var totalBooksCopies = context.Authors
                 .Select(x => new 
                 { 
-                    Author = $"{x.Author.FirstName} {x.Author.LastName}",
-                    TotalCopies = x.Copies
+                    Author = $"{x.FirstName} {x.LastName}",
+                    TotalCopies = x.Books.Sum(x=>x.Copies)
                 })
-                .OrderByDescending(x=>x.TotalCopies);
+                .OrderByDescending(x=>x.TotalCopies)
+                .ToArray();
 
       
             
             foreach (var book in totalBooksCopies)
             {
                 sb.AppendLine($"{book.Author} - {book.TotalCopies}");
+            }
+            return sb.ToString().TrimEnd();
+        }
+        public static string GetTotalProfitByCategory(BookShopContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var allBooksProfit = context.Categories
+                .Select(x => new
+                {
+                   Categories = x.Name,
+                   Profit = x.CategoryBooks.Sum(x=>x.Book.Price*x.Book.Copies)
+                })
+                .OrderByDescending(x=>x.Profit)
+                .ThenBy(x=>x.Categories);
+            
+            foreach (var book in allBooksProfit)
+            {
+                sb.AppendLine($"{book.Categories} ${book.Profit:f2}");
             }
             return sb.ToString().TrimEnd();
         }
